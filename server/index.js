@@ -16,7 +16,7 @@ app.get('/', (req, res) => res.send('API is running successfully...'));
 
 app.use('/posts', postRoutes);
 
-const CONNECTION_URL = 'mongodb+srv://dylan01:dylan01@cluster0.rk0ev.mongodb.net/<dbname>?retryWrites=true&w=majority';
+const CONNECTION_URL = 'mongodb+srv://user01:user01@cluster0.lxcvk.mongodb.net/<dbname>?retryWrites=true&w=majority';
 
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => app.listen(PORT, () => console.log(`Server is running on port ${ PORT }`)))

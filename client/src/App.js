@@ -1,13 +1,21 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Container, Typography, Grid, Grow, AppBar} from "@material-ui/core";
 import events from './images/event.png';
 import Posts from './components/Posts/Posts-component';
 import Form from './components/Form/Form-component';
 import userStyles from './styles'
+import { getPosts } from './react-redux/actions/posts-actions'
 
+import {useDispatch} from 'react-redux'   // the way to use dispatch(dispatch is used to dispatch an action) is in useEffect
 
 const App = () => {
   const classes = userStyles()
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getPosts())
+  },[dispatch])
+
   return (
     <Container maxWidth='lg'>
       <AppBar className={classes.appBar} position='static' color='inherit'>
