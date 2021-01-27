@@ -4,11 +4,9 @@ import useStyles from './styles'
 import { useSelector } from 'react-redux'
 import { CircularProgress, Grid } from '@material-ui/core'
 
-const Posts = ({ setCurrentId }) => {
+const Posts = ({ currentId, setCurrentId }) => {
   const classes = useStyles()
   const posts = useSelector(state => state.posts)     // Fetch the state data from react-redux
-
-  console.log(posts)
 
   return (
     !posts.length ? <CircularProgress/> : (
@@ -16,7 +14,7 @@ const Posts = ({ setCurrentId }) => {
         {
           posts.map(post => (
             <Grid key={ post._id } item xs={ 12 } sm={ 6 }>
-              <Post post={ post } setCurrentId={ setCurrentId }/>
+              <Post post={ post } currentId = {currentId} setCurrentId={ setCurrentId }/>
             </Grid>
           ))
         }
