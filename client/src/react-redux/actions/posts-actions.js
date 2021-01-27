@@ -1,5 +1,5 @@
 import * as api from '../../api/api'
-import { FETCH_ALL, CREATE } from '../constants/action-type'
+import { FETCH_ALL, CREATE, UPDATE } from '../constants/action-type'
 
 // Action Creators
 export const getPosts = () => async (dispatch) => {
@@ -15,6 +15,15 @@ export const createPost = (newPost) => async (dispatch) => {
   try {
     const { data } = await api.createPost(newPost)
     dispatch({ type: CREATE, payload: data })
+  } catch( error ) {
+    console.log(error)
+  }
+}
+
+export const updatePost = (id, updatedPost) => async(dispatch) => {
+  try {
+    const {data} = await api.updatePost(id, updatedPost)
+    dispatch({type: UPDATE, payload: data})
   } catch( error ) {
     console.log(error)
   }

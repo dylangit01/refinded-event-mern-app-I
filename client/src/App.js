@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Container, Typography, Grid, Grow, AppBar} from "@material-ui/core";
 import events from './images/event.png';
 import Posts from './components/Posts/Posts-component';
@@ -11,6 +11,8 @@ import {useDispatch} from 'react-redux'   // the way to use dispatch(dispatch is
 const App = () => {
   const classes = userStyles()
   const dispatch = useDispatch()
+
+  const [currentId, setCurrentId] = useState(null)
 
   useEffect(() => {
     dispatch(getPosts())
@@ -26,10 +28,10 @@ const App = () => {
         <Container>
           <Grid container justify='space-between' alignItems='stretch' spacing={3}>
             <Grid item xs={12} sm={7}>
-              <Posts />
+              <Posts setCurrentId = {setCurrentId} />
             </Grid>
             <Grid item xs={12} sm={4}>
-              <Form />
+              <Form currentId = {currentId} setCurrentId = {setCurrentId} />
             </Grid>
           </Grid>
         </Container>

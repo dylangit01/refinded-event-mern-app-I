@@ -1,4 +1,5 @@
 import PostModel from "../models/postModel.js";
+import mongoose from 'mongoose'
 
 export const getPosts = async (req, res) => {
   try {
@@ -20,8 +21,12 @@ export const createPost = async (req, res) => {
   }
 };
 
-export const updatePost = (req, res) => {
-
+export const updatePost = async (req, res) => {
+  const {id} = req.params
+  const post = req.body
+  if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`)
+  const updatedPost = await PostModel.findByIdAndUpdate(id, post, {new: true})
+  res.json(updatedPost)
 };
 
 export const deletePost = (req, res) => {
