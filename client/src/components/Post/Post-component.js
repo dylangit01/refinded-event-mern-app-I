@@ -1,13 +1,16 @@
 import React from 'react';
+import {useDispatch} from 'react-redux'
 import userStyles from './styles'
 import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core'
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt'
 import DeleteIcon from '@material-ui/icons/Delete'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import moment from 'moment'
+import { deletePost } from '../../react-redux/actions/posts-actions'
 
 const Post = ({ post, setCurrentId }) => {
   const classes = userStyles()
+  const dispatch = useDispatch()
 
   // const EditForm = () => {
   //   const [ editForm, setEditForm ] = useState({ title: '', message: '', creator: '', tags: '', selectedFile: '' })
@@ -78,8 +81,7 @@ const Post = ({ post, setCurrentId }) => {
                 Like
                 { post.likeCount }
               </Button>
-              <Button size='small' color='primary' onChange={ () => {
-              } }>
+              <Button size='small' color='primary' onClick={ () => dispatch(deletePost(post._id)) }>
                 <DeleteIcon fontSize='small'/>
                 Delete
               </Button>

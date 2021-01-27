@@ -10,7 +10,7 @@ const posts = (posts = [], action) => {
       console.log(action.payload)
       return posts.map(post => post._id === action.payload._id ? action.payload : post )
     case DELETE:
-      return posts
+      return posts.filter(post => post._id !== action.payload)
     default:
       return posts
   }
