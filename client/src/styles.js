@@ -15,9 +15,4 @@ export default makeStyles({
   image: {
     marginLeft: '15px',
   },
-  // mainContainer : {
-  //   '@media (max-width: 900px)': {
-  //   flexDirection: 'column-reverse'
-  //   }
-  // }
 })
